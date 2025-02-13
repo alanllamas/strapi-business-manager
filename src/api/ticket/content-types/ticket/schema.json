@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tickets",
+  "info": {
+    "singularName": "ticket",
+    "pluralName": "tickets",
+    "displayName": "ticket"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "ticket_number": {
+      "type": "integer"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "tickets"
+    },
+    "sale_date": {
+      "type": "datetime"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "tickets"
+    },
+    "shipping_price": {
+      "type": "decimal"
+    },
+    "total": {
+      "type": "decimal"
+    }
+  }
+}

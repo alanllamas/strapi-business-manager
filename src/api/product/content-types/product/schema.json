@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "integer"
+    },
+    "measurement_unit": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "product_variant": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::product-variant.product-variant",
+      "inversedBy": "products"
+    },
+    "tickets": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::ticket.ticket",
+      "mappedBy": "products"
+    }
+  }
+}

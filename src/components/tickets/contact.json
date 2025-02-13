@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_tickets_contacts",
+  "info": {
+    "displayName": "contact"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "phone": {
+      "type": "string",
+      "regex": "/[0-9]/"
+    },
+    "extension": {
+      "type": "integer"
+    }
+  }
+}
