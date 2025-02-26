@@ -1,7 +1,8 @@
 {
   "collectionName": "components_tickets_ticket_products",
   "info": {
-    "displayName": "ticket-product"
+    "displayName": "ticket-product",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -17,6 +18,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product-variant.product-variant"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "product_total": {
+      "type": "decimal"
     }
   }
 }

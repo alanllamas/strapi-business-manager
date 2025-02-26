@@ -16,10 +16,13 @@ export interface TicketsContact extends Struct.ComponentSchema {
 export interface TicketsTicketProduct extends Struct.ComponentSchema {
   collectionName: "components_tickets_ticket_products";
   info: {
+    description: "";
     displayName: "ticket-product";
   };
   attributes: {
+    price: Schema.Attribute.Decimal;
     product: Schema.Attribute.Relation<"oneToOne", "api::product.product">;
+    product_total: Schema.Attribute.Decimal;
     product_variants: Schema.Attribute.Relation<
       "oneToMany",
       "api::product-variant.product-variant"
