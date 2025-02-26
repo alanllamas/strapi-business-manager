@@ -460,7 +460,6 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Integer;
-    tickets: Schema.Attribute.Relation<"manyToMany", "api::ticket.ticket">;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
@@ -470,6 +469,7 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
 export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
   collectionName: "tickets";
   info: {
+    description: "";
     displayName: "ticket";
     pluralName: "tickets";
     singularName: "ticket";
@@ -488,7 +488,7 @@ export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
       "api::ticket.ticket"
     > &
       Schema.Attribute.Private;
-    products: Schema.Attribute.Relation<"manyToMany", "api::product.product">;
+    products: Schema.Attribute.Component<"tickets.ticket-product", true>;
     publishedAt: Schema.Attribute.DateTime;
     sale_date: Schema.Attribute.DateTime;
     shipping_price: Schema.Attribute.Decimal;

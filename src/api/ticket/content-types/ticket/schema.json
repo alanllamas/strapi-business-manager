@@ -4,7 +4,8 @@
   "info": {
     "singularName": "ticket",
     "pluralName": "tickets",
-    "displayName": "ticket"
+    "displayName": "ticket",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,17 +23,17 @@
     "sale_date": {
       "type": "datetime"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "tickets"
-    },
     "shipping_price": {
       "type": "decimal"
     },
     "total": {
       "type": "decimal"
+    },
+    "products": {
+      "displayName": "ticket-product",
+      "type": "component",
+      "repeatable": true,
+      "component": "tickets.ticket-product"
     }
   }
 }

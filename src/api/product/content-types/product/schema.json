@@ -27,12 +27,6 @@
       "relation": "manyToOne",
       "target": "api::product-variant.product-variant",
       "inversedBy": "products"
-    },
-    "tickets": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::ticket.ticket",
-      "mappedBy": "products"
     }
   }
 }
