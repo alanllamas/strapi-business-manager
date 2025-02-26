@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -22,9 +23,9 @@
     "price": {
       "type": "integer"
     },
-    "product_variant": {
+    "product_variants": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::product-variant.product-variant",
       "inversedBy": "products"
     }

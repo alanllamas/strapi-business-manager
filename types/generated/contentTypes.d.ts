@@ -422,7 +422,7 @@ export interface ApiProductVariantProductVariant
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
-    products: Schema.Attribute.Relation<"oneToMany", "api::product.product">;
+    products: Schema.Attribute.Relation<"manyToMany", "api::product.product">;
     publishedAt: Schema.Attribute.DateTime;
     type: Schema.Attribute.Enumeration<["color", "tamano", "empaque"]>;
     updatedAt: Schema.Attribute.DateTime;
@@ -434,6 +434,7 @@ export interface ApiProductVariantProductVariant
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: "products";
   info: {
+    description: "";
     displayName: "product";
     pluralName: "products";
     singularName: "product";
@@ -454,8 +455,8 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     measurement_unit: Schema.Attribute.String;
     name: Schema.Attribute.String;
     price: Schema.Attribute.Integer;
-    product_variant: Schema.Attribute.Relation<
-      "manyToOne",
+    product_variants: Schema.Attribute.Relation<
+      "manyToMany",
       "api::product-variant.product-variant"
     >;
     publishedAt: Schema.Attribute.DateTime;
