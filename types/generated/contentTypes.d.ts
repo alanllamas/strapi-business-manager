@@ -493,6 +493,7 @@ export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     sale_date: Schema.Attribute.DateTime;
     shipping_price: Schema.Attribute.Decimal;
+    sub_total: Schema.Attribute.Decimal;
     ticket_number: Schema.Attribute.Integer;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
