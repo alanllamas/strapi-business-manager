@@ -1,0 +1,67 @@
+{
+  "collectionName": "components_clients_taxing_infos",
+  "info": {
+    "displayName": "taxing_info",
+    "icon": "",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "billing_period": {
+      "type": "integer"
+    },
+    "taxing_company_name": {
+      "type": "string"
+    },
+    "taxing_payment_method": {
+      "type": "string"
+    },
+    "taxing_method_of_payment": {
+      "type": "string"
+    },
+    "taxing_CFDI_use": {
+      "type": "string"
+    },
+    "payment_period": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "email"
+    },
+    "comments": {
+      "type": "text"
+    },
+    "shipping_invoice": {
+      "type": "boolean",
+      "default": false
+    },
+    "taxing_RFC": {
+      "type": "string"
+    },
+    "payment_method": {
+      "type": "enumeration",
+      "enum": [
+        "transferencia",
+        "efectivo",
+        "tarjeta"
+      ],
+      "default": "transferencia"
+    },
+    "invoice_period": {
+      "type": "integer"
+    },
+    "zip_code": {
+      "type": "biginteger"
+    },
+    "taxing_regime": {
+      "type": "string"
+    },
+    "tax_certificate": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

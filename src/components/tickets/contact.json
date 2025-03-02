@@ -1,7 +1,8 @@
 {
   "collectionName": "components_tickets_contacts",
   "info": {
-    "displayName": "contact"
+    "displayName": "contact",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -17,6 +18,12 @@
     },
     "extension": {
       "type": "integer"
+    },
+    "area": {
+      "type": "string"
+    },
+    "job_title": {
+      "type": "string"
     }
   }
 }

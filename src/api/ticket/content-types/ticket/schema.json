@@ -37,6 +37,22 @@
     },
     "sub_total": {
       "type": "decimal"
+    },
+    "invoice": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::invoice.invoice",
+      "inversedBy": "tickets"
+    },
+    "ticket_status": {
+      "type": "enumeration",
+      "enum": [
+        "creado",
+        "pagado",
+        "adeudo",
+        "cancelado"
+      ],
+      "default": "creado"
     }
   }
 }

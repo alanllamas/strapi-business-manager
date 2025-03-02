@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiClientClient extends Struct.CollectionTypeSchema {
   collectionName: "clients";
   info: {
+    description: "";
     displayName: "client";
     pluralName: "clients";
     singularName: "client";
@@ -384,6 +385,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
+    invoices: Schema.Attribute.Relation<"oneToMany", "api::invoice.invoice">;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       "oneToMany",
@@ -392,7 +394,57 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    taxing_info: Schema.Attribute.Component<"clients.taxing-info", false>;
     tickets: Schema.Attribute.Relation<"oneToMany", "api::ticket.ticket">;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
+  collectionName: "invoices";
+  info: {
+    description: "";
+    displayName: "Invoice";
+    pluralName: "invoices";
+    singularName: "invoice";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    client: Schema.Attribute.Relation<"manyToOne", "api::client.client">;
+    comments: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    ending_date: Schema.Attribute.Date;
+    expected_payment_date: Schema.Attribute.Date;
+    initial_date: Schema.Attribute.Date;
+    inner_comments: Schema.Attribute.RichText;
+    invoice_file: Schema.Attribute.Media<"files">;
+    invoice_id: Schema.Attribute.String;
+    invoice_send_date: Schema.Attribute.Date;
+    invoice_status: Schema.Attribute.Enumeration<
+      ["creado", "enviado", "pagado", "cancelado"]
+    > &
+      Schema.Attribute.DefaultTo<"creado">;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::invoice.invoice"
+    > &
+      Schema.Attribute.Private;
+    payment_date: Schema.Attribute.Date;
+    payment_reference: Schema.Attribute.String;
+    payment_supplement: Schema.Attribute.String;
+    proof_of_payment: Schema.Attribute.Media<"images" | "files">;
+    publishedAt: Schema.Attribute.DateTime;
+    sub_total: Schema.Attribute.Decimal;
+    taxes: Schema.Attribute.Decimal;
+    tickets: Schema.Attribute.Relation<"oneToMany", "api::ticket.ticket">;
+    total: Schema.Attribute.Decimal & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
@@ -461,6 +513,16 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     quantity: Schema.Attribute.Integer;
+    taxes: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 100;
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
@@ -483,6 +545,7 @@ export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
+    invoice: Schema.Attribute.Relation<"manyToOne", "api::invoice.invoice">;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       "oneToMany",
@@ -495,6 +558,10 @@ export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
     shipping_price: Schema.Attribute.Decimal;
     sub_total: Schema.Attribute.Decimal;
     ticket_number: Schema.Attribute.Integer;
+    ticket_status: Schema.Attribute.Enumeration<
+      ["creado", "pagado", "adeudo", "cancelado"]
+    > &
+      Schema.Attribute.DefaultTo<"creado">;
     total: Schema.Attribute.Decimal;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
@@ -1012,6 +1079,7 @@ declare module "@strapi/strapi" {
       "admin::transfer-token-permission": AdminTransferTokenPermission;
       "admin::user": AdminUser;
       "api::client.client": ApiClientClient;
+      "api::invoice.invoice": ApiInvoiceInvoice;
       "api::product-variant.product-variant": ApiProductVariantProductVariant;
       "api::product.product": ApiProductProduct;
       "api::ticket.ticket": ApiTicketTicket;

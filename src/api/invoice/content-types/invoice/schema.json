@@ -1,0 +1,93 @@
+{
+  "kind": "collectionType",
+  "collectionName": "invoices",
+  "info": {
+    "singularName": "invoice",
+    "pluralName": "invoices",
+    "displayName": "Invoice",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "client": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::client.client",
+      "inversedBy": "invoices"
+    },
+    "tickets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::ticket.ticket",
+      "mappedBy": "invoice"
+    },
+    "total": {
+      "type": "decimal",
+      "required": true
+    },
+    "payment_date": {
+      "type": "date"
+    },
+    "sub_total": {
+      "type": "decimal"
+    },
+    "taxes": {
+      "type": "decimal"
+    },
+    "invoice_file": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "invoice_status": {
+      "type": "enumeration",
+      "enum": [
+        "creado",
+        "enviado",
+        "pagado",
+        "cancelado"
+      ],
+      "default": "creado"
+    },
+    "invoice_id": {
+      "type": "string"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "payment_supplement": {
+      "type": "string"
+    },
+    "expected_payment_date": {
+      "type": "date"
+    },
+    "initial_date": {
+      "type": "date"
+    },
+    "ending_date": {
+      "type": "date"
+    },
+    "invoice_send_date": {
+      "type": "date"
+    },
+    "proof_of_payment": {
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "comments": {
+      "type": "richtext"
+    },
+    "inner_comments": {
+      "type": "richtext"
+    }
+  }
+}

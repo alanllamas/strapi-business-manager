@@ -1,13 +1,46 @@
 import type { Schema, Struct } from "@strapi/strapi";
 
+export interface ClientsTaxingInfo extends Struct.ComponentSchema {
+  collectionName: "components_clients_taxing_infos";
+  info: {
+    description: "";
+    displayName: "taxing_info";
+    icon: "";
+  };
+  attributes: {
+    billing_period: Schema.Attribute.Integer;
+    comments: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    invoice_period: Schema.Attribute.Integer;
+    payment_method: Schema.Attribute.Enumeration<
+      ["transferencia", "efectivo", "tarjeta"]
+    > &
+      Schema.Attribute.DefaultTo<"transferencia">;
+    payment_period: Schema.Attribute.Integer;
+    shipping_invoice: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    tax_certificate: Schema.Attribute.Media<"files">;
+    taxing_CFDI_use: Schema.Attribute.String;
+    taxing_company_name: Schema.Attribute.String;
+    taxing_method_of_payment: Schema.Attribute.String;
+    taxing_payment_method: Schema.Attribute.String;
+    taxing_regime: Schema.Attribute.String;
+    taxing_RFC: Schema.Attribute.String;
+    zip_code: Schema.Attribute.BigInteger;
+  };
+}
+
 export interface TicketsContact extends Struct.ComponentSchema {
   collectionName: "components_tickets_contacts";
   info: {
+    description: "";
     displayName: "contact";
   };
   attributes: {
+    area: Schema.Attribute.String;
     email: Schema.Attribute.Email;
     extension: Schema.Attribute.Integer;
+    job_title: Schema.Attribute.String;
     name: Schema.Attribute.String;
     phone: Schema.Attribute.String;
   };
@@ -34,6 +67,7 @@ export interface TicketsTicketProduct extends Struct.ComponentSchema {
 declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
+      "clients.taxing-info": ClientsTaxingInfo;
       "tickets.contact": TicketsContact;
       "tickets.ticket-product": TicketsTicketProduct;
     }
