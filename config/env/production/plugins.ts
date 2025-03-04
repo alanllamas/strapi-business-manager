@@ -1,7 +1,7 @@
 export default ({env}) => ({
   upload: {
     config: {
-      provider: 'aws-s3',
+      provider: 'strapi-provider-upload-aws-s3',
       providerOptions: {
         baseUrl: `https://s3.${env('AWS_REGION')}.amazonaws.com/${env('AWS_BUCKET')}`,
         s3Options: {
