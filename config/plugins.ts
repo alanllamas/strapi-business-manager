@@ -3,6 +3,7 @@ export default ({env}) => ({
     config: {
       provider: 'aws-s3',
       providerOptions: {
+        baseUrl: `https://s3.${env('AWS_REGION')}.amazonaws.com/${env('AWS_BUCKET')}`,
         s3Options: {
           credentials: {
             accessKeyId: env('AWS_ACCESS_KEY_ID'),
