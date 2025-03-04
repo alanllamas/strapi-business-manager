@@ -15,12 +15,7 @@ export default ({env}) => ({
             Bucket: env('AWS_BUCKET'),
           },
         },
-      },
-      actionOptions: {
-        upload: {},
-        uploadStream: {},
-        delete: {},
-      },
+      }
     },
   },
 });
