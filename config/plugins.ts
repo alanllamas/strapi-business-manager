@@ -11,7 +11,6 @@ export default ({env}) => ({
           },
           region: env('AWS_REGION'),
           params: {
-            ACL: env('AWS_ACL', 'public-read'),
             Bucket: env('AWS_BUCKET'),
           },
         },
