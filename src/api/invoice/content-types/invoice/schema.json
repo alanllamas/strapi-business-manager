@@ -88,11 +88,15 @@
       "type": "richtext"
     },
     "payment_supplement": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "resume": {
+      "type": "json"
     }
   }
 }
