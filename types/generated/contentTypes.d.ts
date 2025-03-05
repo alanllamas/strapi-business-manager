@@ -438,7 +438,7 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     payment_date: Schema.Attribute.Date;
     payment_reference: Schema.Attribute.String;
-    payment_supplement: Schema.Attribute.String;
+    payment_supplement: Schema.Attribute.Media<"files">;
     proof_of_payment: Schema.Attribute.Media<"images" | "files">;
     publishedAt: Schema.Attribute.DateTime;
     sub_total: Schema.Attribute.Decimal;
