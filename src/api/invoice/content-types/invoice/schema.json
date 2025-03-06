@@ -97,6 +97,9 @@
     },
     "resume": {
       "type": "json"
+    },
+    "shipping": {
+      "type": "decimal"
     }
   }
 }

@@ -442,6 +442,7 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
     proof_of_payment: Schema.Attribute.Media<"images" | "files">;
     publishedAt: Schema.Attribute.DateTime;
     resume: Schema.Attribute.JSON;
+    shipping: Schema.Attribute.Decimal;
     sub_total: Schema.Attribute.Decimal;
     taxes: Schema.Attribute.Decimal;
     tickets: Schema.Attribute.Relation<"oneToMany", "api::ticket.ticket">;
