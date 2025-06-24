@@ -47,12 +47,11 @@
     "invoice_status": {
       "type": "enumeration",
       "enum": [
-        "creado",
-        "enviado",
+        "por-pagar",
         "pagado",
         "cancelado"
       ],
-      "default": "creado"
+      "default": "por-pagar"
     },
     "invoice_id": {
       "type": "string"
@@ -81,12 +80,6 @@
         "files"
       ]
     },
-    "comments": {
-      "type": "richtext"
-    },
-    "inner_comments": {
-      "type": "richtext"
-    },
     "payment_supplement": {
       "type": "media",
       "multiple": false,
@@ -100,6 +93,12 @@
     },
     "shipping": {
       "type": "decimal"
+    },
+    "comments": {
+      "type": "blocks"
+    },
+    "inner_comments": {
+      "type": "blocks"
     }
   }
 }

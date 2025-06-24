@@ -415,21 +415,21 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
   };
   attributes: {
     client: Schema.Attribute.Relation<"manyToOne", "api::client.client">;
-    comments: Schema.Attribute.RichText;
+    comments: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
     ending_date: Schema.Attribute.Date;
     expected_payment_date: Schema.Attribute.Date;
     initial_date: Schema.Attribute.Date;
-    inner_comments: Schema.Attribute.RichText;
+    inner_comments: Schema.Attribute.Blocks;
     invoice_file: Schema.Attribute.Media<"files">;
     invoice_id: Schema.Attribute.String;
     invoice_send_date: Schema.Attribute.Date;
     invoice_status: Schema.Attribute.Enumeration<
-      ["creado", "enviado", "pagado", "cancelado"]
+      ["por-pagar", "pagado", "cancelado"]
     > &
-      Schema.Attribute.DefaultTo<"creado">;
+      Schema.Attribute.DefaultTo<"por-pagar">;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       "oneToMany",
