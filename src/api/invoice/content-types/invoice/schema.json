@@ -95,10 +95,10 @@
       "type": "decimal"
     },
     "comments": {
-      "type": "blocks"
+      "type": "text"
     },
     "inner_comments": {
-      "type": "blocks"
+      "type": "text"
     }
   }
 }
