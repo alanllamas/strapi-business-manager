@@ -42,7 +42,7 @@ export interface TicketsContact extends Struct.ComponentSchema {
     extension: Schema.Attribute.Integer;
     job_title: Schema.Attribute.String;
     name: Schema.Attribute.String;
-    phone: Schema.Attribute.String;
+    phone: Schema.Attribute.BigInteger;
   };
 }
 

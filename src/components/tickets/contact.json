@@ -12,10 +12,6 @@
     "email": {
       "type": "email"
     },
-    "phone": {
-      "type": "string",
-      "regex": "/[0-9]/"
-    },
     "extension": {
       "type": "integer"
     },
@@ -24,6 +20,9 @@
     },
     "job_title": {
       "type": "string"
+    },
+    "phone": {
+      "type": "biginteger"
     }
   }
 }
