@@ -411,7 +411,7 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
     singularName: "invoice";
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     client: Schema.Attribute.Relation<"manyToOne", "api::client.client">;
@@ -528,6 +528,129 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<0>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPurchasePurchase extends Struct.CollectionTypeSchema {
+  collectionName: "purchases";
+  info: {
+    description: "";
+    displayName: "Purchase";
+    pluralName: "purchases";
+    singularName: "purchase";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    comments: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::purchase.purchase"
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    purchase_date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    purchase_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    purchase_reason: Schema.Attribute.Enumeration<
+      ["supplies", "tools", "food", "drinks", "other"]
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"supplies">;
+    purchase_status: Schema.Attribute.Enumeration<
+      ["planned", "paid", "completed", "canceled"]
+    >;
+    shipping_cost: Schema.Attribute.Decimal;
+    subtotal: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    supplies: Schema.Attribute.Component<"purchases.purchase-supply", true> &
+      Schema.Attribute.Required;
+    total: Schema.Attribute.BigInteger & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupplyVariantSupplyVariant
+  extends Struct.CollectionTypeSchema {
+  collectionName: "supply_variants";
+  info: {
+    displayName: "Supply Variant";
+    pluralName: "supply-variants";
+    singularName: "supply-variant";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.RichText;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::supply-variant.supply-variant"
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<["tamano", "color", "empaque"]> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"color">;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSupplySupply extends Struct.CollectionTypeSchema {
+  collectionName: "supplies";
+  info: {
+    description: "";
+    displayName: "Supply";
+    pluralName: "supplies";
+    singularName: "supply";
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    cost: Schema.Attribute.Integer & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::supply.supply"
+    > &
+      Schema.Attribute.Private;
+    measurement_unit: Schema.Attribute.Enumeration<["kg", "lt", "pza", "dza"]> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"kg">;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    quantity: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<1>;
+    supply_variants: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::supply-variant.supply-variant"
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<"oneToOne", "admin::user"> &
       Schema.Attribute.Private;
@@ -1089,6 +1212,9 @@ declare module "@strapi/strapi" {
       "api::invoice.invoice": ApiInvoiceInvoice;
       "api::product-variant.product-variant": ApiProductVariantProductVariant;
       "api::product.product": ApiProductProduct;
+      "api::purchase.purchase": ApiPurchasePurchase;
+      "api::supply-variant.supply-variant": ApiSupplyVariantSupplyVariant;
+      "api::supply.supply": ApiSupplySupply;
       "api::ticket.ticket": ApiTicketTicket;
       "plugin::content-releases.release": PluginContentReleasesRelease;
       "plugin::content-releases.release-action": PluginContentReleasesReleaseAction;

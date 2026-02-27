@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_purchases_purchase_supplies",
+  "info": {
+    "displayName": "Purchase-supply"
+  },
+  "options": {},
+  "attributes": {
+    "supply": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::supply.supply"
+    },
+    "quantity": {
+      "type": "decimal",
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "supply_total": {
+      "type": "decimal",
+      "required": true
+    },
+    "supply_variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::supply-variant.supply-variant"
+    }
+  }
+}

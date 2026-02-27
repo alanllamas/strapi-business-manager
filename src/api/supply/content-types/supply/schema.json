@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supplies",
+  "info": {
+    "singularName": "supply",
+    "pluralName": "supplies",
+    "displayName": "Supply",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "measurement_unit": {
+      "type": "enumeration",
+      "enum": [
+        "kg",
+        "lt",
+        "pza",
+        "dza"
+      ],
+      "default": "kg",
+      "required": true
+    },
+    "cost": {
+      "type": "integer",
+      "required": true
+    },
+    "supply_variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::supply-variant.supply-variant"
+    }
+  }
+}

@@ -30,6 +30,23 @@ export interface ClientsTaxingInfo extends Struct.ComponentSchema {
   };
 }
 
+export interface PurchasesPurchaseSupply extends Struct.ComponentSchema {
+  collectionName: "components_purchases_purchase_supplies";
+  info: {
+    displayName: "Purchase-supply";
+  };
+  attributes: {
+    price: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    quantity: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    supply: Schema.Attribute.Relation<"oneToOne", "api::supply.supply">;
+    supply_total: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    supply_variants: Schema.Attribute.Relation<
+      "oneToMany",
+      "api::supply-variant.supply-variant"
+    >;
+  };
+}
+
 export interface TicketsContact extends Struct.ComponentSchema {
   collectionName: "components_tickets_contacts";
   info: {
@@ -68,6 +85,7 @@ declare module "@strapi/strapi" {
   export module Public {
     export interface ComponentSchemas {
       "clients.taxing-info": ClientsTaxingInfo;
+      "purchases.purchase-supply": PurchasesPurchaseSupply;
       "tickets.contact": TicketsContact;
       "tickets.ticket-product": TicketsTicketProduct;
     }

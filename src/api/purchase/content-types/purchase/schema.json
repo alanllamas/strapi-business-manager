@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "purchases",
+  "info": {
+    "singularName": "purchase",
+    "pluralName": "purchases",
+    "displayName": "Purchase",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "purchase_number": {
+      "required": true,
+      "unique": true,
+      "type": "integer"
+    },
+    "purchase_date": {
+      "type": "datetime",
+      "required": true
+    },
+    "shipping_cost": {
+      "type": "decimal"
+    },
+    "total": {
+      "type": "biginteger",
+      "required": true
+    },
+    "subtotal": {
+      "type": "decimal",
+      "required": true
+    },
+    "purchase_reason": {
+      "type": "enumeration",
+      "enum": [
+        "supplies",
+        "tools",
+        "food",
+        "drinks",
+        "other"
+      ],
+      "default": "supplies",
+      "required": true
+    },
+    "purchase_status": {
+      "type": "enumeration",
+      "enum": [
+        "planned",
+        "paid",
+        "completed",
+        "canceled"
+      ]
+    },
+    "supplies": {
+      "displayName": "Purchase-supply",
+      "type": "component",
+      "repeatable": true,
+      "component": "purchases.purchase-supply",
+      "required": true
+    },
+    "comments": {
+      "type": "richtext"
+    }
+  }
+}

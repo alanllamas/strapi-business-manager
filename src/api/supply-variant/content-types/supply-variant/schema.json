@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "supply_variants",
+  "info": {
+    "singularName": "supply-variant",
+    "pluralName": "supply-variants",
+    "displayName": "Supply Variant"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "tamano",
+        "color",
+        "empaque"
+      ],
+      "default": "color",
+      "required": true
+    }
+  }
+}
