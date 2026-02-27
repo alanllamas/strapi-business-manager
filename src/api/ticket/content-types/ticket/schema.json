@@ -12,7 +12,9 @@
   },
   "attributes": {
     "ticket_number": {
-      "type": "integer"
+      "type": "integer",
+      "unique": true,
+      "required": true
     },
     "client": {
       "type": "relation",

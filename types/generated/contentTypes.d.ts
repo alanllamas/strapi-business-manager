@@ -562,7 +562,9 @@ export interface ApiTicketTicket extends Struct.CollectionTypeSchema {
     sale_date: Schema.Attribute.DateTime;
     shipping_price: Schema.Attribute.Decimal;
     sub_total: Schema.Attribute.Decimal;
-    ticket_number: Schema.Attribute.Integer;
+    ticket_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     ticket_status: Schema.Attribute.Enumeration<
       ["creado", "pagado", "adeudo", "cancelado"]
     > &
