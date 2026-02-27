@@ -430,6 +430,9 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
       ["por-pagar", "pagado", "cancelado"]
     > &
       Schema.Attribute.DefaultTo<"por-pagar">;
+    invoicen_umber: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       "oneToMany",

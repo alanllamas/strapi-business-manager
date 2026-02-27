@@ -99,6 +99,11 @@
     },
     "inner_comments": {
       "type": "text"
+    },
+    "invoicen_umber": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }
