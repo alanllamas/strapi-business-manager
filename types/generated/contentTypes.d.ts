@@ -425,14 +425,14 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
     inner_comments: Schema.Attribute.Text;
     invoice_file: Schema.Attribute.Media<"files">;
     invoice_id: Schema.Attribute.String;
+    invoice_number: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     invoice_send_date: Schema.Attribute.Date;
     invoice_status: Schema.Attribute.Enumeration<
       ["por-pagar", "pagado", "cancelado"]
     > &
       Schema.Attribute.DefaultTo<"por-pagar">;
-    invoicen_umber: Schema.Attribute.Integer &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       "oneToMany",

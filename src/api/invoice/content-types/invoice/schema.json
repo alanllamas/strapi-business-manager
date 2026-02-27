@@ -100,7 +100,7 @@
     "inner_comments": {
       "type": "text"
     },
-    "invoicen_umber": {
+    "invoice_number": {
       "type": "integer",
       "required": true,
       "unique": true
